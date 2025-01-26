@@ -1,17 +1,37 @@
 import React, { useState, useEffect } from "react";
-import { showHUD, Clipboard, Detail, ActionPanel, Action, popToRoot, closeMainWindow } from "@raycast/api";
-import OpenAI from 'openai';
+import {
+  showHUD,
+  Clipboard,
+  Detail,
+  ActionPanel,
+  Action,
+  popToRoot,
+  closeMainWindow,
+  getPreferenceValues,
+} from "@raycast/api";
+import OpenAI from "openai";
 
-
-const OPENAI_API_KEY = "";
-
-const openai = new OpenAI({
-  apiKey: OPENAI_API_KEY,
-});
+interface Preferences {
+  apiKey: string;
+}
 
 export default function Command() {
   const [rewrittenText, setRewrittenText] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+
+  const { apiKey } = getPreferenceValues<Preferences>();
+
+  if (!apiKey) {
+    return (
+      <Detail
+        markdown="**Error:** OpenAI API key is not set. Please update your preferences."
+      />
+    );
+  }
+
+  const openai = new OpenAI({
+    apiKey: apiKey,
+  });
 
   useEffect(() => {
     async function fetchAndRewriteText() {
@@ -23,11 +43,11 @@ export default function Command() {
           return;
         }
 
-        const prompt = `grammar-fix: ${clipboardContent}`;
+        const prompt = `Please revise the following text for correct grammar, spelling, and style in British English: ${clipboardContent}`;
 
         const chatCompletion = await openai.chat.completions.create({
-          messages: [{ role: 'user', content: prompt }],
-          model: 'gpt-3.5-turbo',
+          messages: [{ role: "user", content: prompt }],
+          model: "gpt-3.5-turbo",
         });
 
         const text = chatCompletion.choices[0]?.message?.content;

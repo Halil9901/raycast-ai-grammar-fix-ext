@@ -3,7 +3,7 @@
   "name": "grammar-fix",
   "title": "Grammar Fix",
   "description": "fixes your grammar with ai",
-  "icon": "icon.webp",
+  "icon": "iconpng.png",
   "author": "hb9901",
   "repository": "https://github.com/Halil9901/raycast-ai-grammar-fix-ext",
   "categories": [
@@ -37,7 +37,7 @@
     "@types/node": "20.8.10",
     "@types/react": "18.3.3",
     "eslint": "^8.57.0",
-    "prettier": "^3.2.5",
+    "prettier": "^3.4.2",
     "typescript": "^5.4.5"
   },
   "scripts": {

@@ -22,11 +22,7 @@ export default function Command() {
   const { apiKey } = getPreferenceValues<Preferences>();
 
   if (!apiKey) {
-    return (
-      <Detail
-        markdown="**Error:** OpenAI API key is not set. Please update your preferences."
-      />
-    );
+    return <Detail markdown="**Error:** OpenAI API key is not set. Please update your preferences." />;
   }
 
   const openai = new OpenAI({

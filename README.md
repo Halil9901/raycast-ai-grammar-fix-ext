@@ -15,10 +15,3 @@ Rewrite clipboard text with proper British English grammar using OpenAI's GPT-3.
 1. Copy some text to your clipboard.
 2. Trigger the extension from Raycast.
 3. View the revised text and copy it back to your clipboard!
-
-## Example
-**Input:**  
-"I want to create a raycast extension for Mac. I want the user to enter their API key and then use the extension."
-
-**Output:**  
-"I want to create a Raycast extension for Mac. I want the user to enter their API key and then use the extension."
